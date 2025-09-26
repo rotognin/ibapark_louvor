@@ -82,7 +82,7 @@ class Response
         $this->endHTML($params);
     }
 
-    public function page($content, $params)
+    public function page($content, $params, $styles = '')
     {
         global $config;
 
@@ -123,8 +123,23 @@ class Response
         $establishmentSelector = \Funcoes\Layout\EstablishmentSelector::render();
         $notificationWidget = \Funcoes\Layout\NotificationWidget::render();
         $navMenu = \Funcoes\Layout\NavMenu::render();
+
+        $dark_mode = $config->get('app.dark_mode', false);
+        $add_class = ($dark_mode) ? 'dark-mode' : '';
+
+        $style_add = '';
+
+        if ($styles != '') {
+            $style_add = <<<HTML
+                <style>
+                    {$styles}
+                </style>
+            HTML;
+        }
+
         echo <<<HTML
-        <body class="layout-navbar-fixed sidebar-mini layout-fixed d3v-compact">
+        {$style_add}
+        <body class="layout-navbar-fixed sidebar-mini layout-fixed {$add_class}">
             <div class="wrapper">
                 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                     <ul class="navbar-nav">
