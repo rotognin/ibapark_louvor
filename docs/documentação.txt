@@ -1,0 +1,67 @@
+Ideias para o novo sistema de escalas da igreja
+- visual novo
+- código aberto
+- login próprio (pensar no jeito de gravar cookies para não pedir usuário e senha de cada um)
+- área particular para cada integrante com funcionalidades
+- mensagens entre integrantes
+- cadastro de cifras para as músicas, mais de uma cifra e mais de um link para cada música
+- poder fazer observações sobre as músicas tocadas, como o tom que foi escolhido, etc
+- listas particulares de músicas de cada integrante
+- sugestões de músicas e assuntos gerais
+- testar bem no celular
+- ver como funciona a integração com o zap
+- função de copiar alguma informação do sistema para jogar no zap
+- agenda específica do grupo
+- cadastro de letras de músicas e slides
+- nas músicas, colocar anexos e criar tipos de anexos: música, cifra, slide, anotações, etc
+- mural de recado do administrador aos participantes, com a possibilidade de resposta dos participantes
+- na parte pessoal dos integrantes, dar a possibilidade deles criar uma "escala de sugestão" com músicas para cada dia
+- em cada escala montada, informar quando será o ensaio, e observações sobre a escala
+- envio de e-mails dos integrantes para qualquer um, e dos líderes (admins) para todos ou alguns
+- cadastro de estudos de louvor, reflexões, marcando quando um integrante acessa o estudo para que os admins vejam quem acessou a página
+- repositório de materiais sobre louvor (parte administrativa e parte dos integrantes), 
+  com a possibilidade dos integrantes sugerirem assuntos e materiais
+- as pessoas podem compartilhar coisas: textos, links para sites ou músicas, imagens, arquivos quaisquer (slides, mp3, pdf...)
+- ao compartilhar, disparar e-mail para todos com o link para a postagem
+- acessos administrativos
+- pensar em não usar o datalayer, mas o esquema de DAO do framinco. Adaptar o sistema
+- montar as tabelas com os esquemas
+- para cada postagem, gravar quem acessou, e um espaço para comentários
+- acesso: e-mail. Pré-cadastrar todos e, no primeiro acesso, pedir senha. Daí gravar um cookie para acesso automático.
+- botões administrativos para enviar e-mails manualmente (nas postagens, nas escalas...)
+- usar a captura de erro para enviar e-mail para cada erro, tipo o framinco
+- para cada postagem, criar uma mensagem para copiar e colar no zap, ou enviar e-mail para todos
+- os admins podem restringir acessos de cada usuário em cada postagem
+- criar grupos (vocais, dirigentes, violão, teclado, bateria, baixo), e as permissões de acesso poderão ser dadas a pessoas do grupo. 
+  O objetivo é compartilhar coisas específicas para os grupos específicos
+- admins podem compartilhar coisas para pessoas e grupos, os demais só compartilham para grupos
+- todos podem compartilhar para todos
+- usar o framinco como framework!!!
+- nele já tem as funcionalidades necessárias, é responsivo e tudo mais
+- não usar a forma "compacta" do css
+- pegar o esquema de cores da igreja e usar o logo
+- o dashboard será a escala publicada
+- colocar funções de acessar escalas anteriores (histórico)
+- criar a importação das escalas anteriores, músicas cadastradas, integrantes
+- pensar bem no sistema de menus, pois deverá ser intuitivo para os usuários
+- funcionalidades para cada um: criar listas de músicas, espaço para guardar textos com a opção de publicar ou compartilhar com 
+  outras pessoas com uma descrição, assim como links, imagens e documentos gerais
+- na verdade, uma "mini rede social" para o pessoal do louvor
+- criar o subdominio louvor.rodrigotognin.com.br para hospedá-lo
+- usar o overlay de "Aguarde", e ver uma forma de não perder o login depois de um tempo de inatividade.
+- usar uma tabela do banco para ficar atualizando o usuário a cada minuto
+- criar uma forma de um service worker, algo assim, do frontend ficar fazendo requisições ao backend para atualizar a data e 
+  hora do usuário ter acessado por último, atualizando a cada minuto
+- calendário pessoal e coletivo para marcações
+
+
+
+--- Futuras melhorias (idéias apontadas no sistema antigo - revisá-las e ver quais são boas)
+
+*** Tabela de encontros do grupo (ensaios, conversas, reuniões)
+*** Tabela de funções (violão base, guitarra solo, vocal, backvocal, P.A., regente, auxiliar datashow, etc)
+*** Atribuição das funções a cada integrante que estiver na escala do grupo
+*** Mural de recado do Administrador aos usuários do sistema
+*** Criar um campo de apelido para os integrantes (talvez...)
+*** Criar um cadastro de usuários com permissões: poderá criar grupos, alterar as escalas, escolher músicas, etc...
+*** Criar um cadastro de Categorias para as músicas - (... prosseguindo ...)
