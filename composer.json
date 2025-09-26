@@ -1,0 +1,28 @@
+{
+    "name": "rodrigo-tognin/app-igreja",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Funcoes\\": "funcoes/",
+            "View\\": "public/",
+            "Passatempos\\": "public/testes/konva/passatempos",
+            "View\\Cadastro\\": "public/cadastro/",
+            "View\\Movimentacao\\": "public/movimentacao/",
+            "View\\Relatorio\\": "public/relatorio/",
+            "View\\Patrinonio\\": "public/patrimonio/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rodrigo Tognin",
+            "email": "contato@rodrigotognin.com.br"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.5",
+        "phpoffice/phpspreadsheet": "^1.28",
+        "robmorgan/phinx": "^0.13.4",
+        "monolog/monolog": "^3.5"
+    }
+}

@@ -1,0 +1,15 @@
+/vendor/
+/config.php
+/config-hospedagem.php
+/teste/
+.vscode/
+/docs/
+public/uploads/
+/upload
+/temp
+/public/teste/
+/public/temp/
+phinx.php
+/logs
+/biblia
+composer.lock
