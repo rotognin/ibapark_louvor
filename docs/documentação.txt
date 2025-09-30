@@ -53,6 +53,24 @@ Ideias para o novo sistema de escalas da igreja
 - criar uma forma de um service worker, algo assim, do frontend ficar fazendo requisições ao backend para atualizar a data e 
   hora do usuário ter acessado por último, atualizando a cada minuto
 - calendário pessoal e coletivo para marcações
+- auxílio ao montar escalas
+- marcador de pessoas que não poderão em determinados dias
+- arrastar e soltar para colocar pessoas na escala
+- listagem de músicas por ordem de menos tocadas, de acordo com o histórico de escalas
+- pessoas poderão colocar no sistema os dias que não poderão
+- na escala sendo montada, se uma pessoa marcou que não poderá, aparecer em vermelho essa indicação
+- sistema para marcar ensaios com o dia e a hora, observações sobre o ensaio. (estará ligado ao dia de execução)
+- se trocar alguma música no ensaio, alterar no dia que irá ser executada a música
+- lembrar de colocar o tom de execução da música. Se trocado, marcar como o tom "principal"
+- a questão da indisponibilidade, abrir o do mês seguinte a partir do dia 20 de cada mês, para as pessoas marcarem que não estarão, 
+  com a possibilidade de uma observação não obrigatória
+- pensar não apenas nos domingos, mas em cultos especiais também, cultos de quarta e demais ocasiões
+- mural de avisos importantes com apenas um título no dashboard, para a pessoa clicar e ler o aviso. Guardar quem abriu o aviso para ler
+- Cadastro de patrimônio
+- responsáveis pelos itens do louvor, cuidar, levar para manutenção, etc
+- tarefas a serem realizadas pelos integrantes (organizar cifras, slides, etc)
+- pensar em mais coisas que não são realizadas usando o zap
+- espécie de "banco", armazenar valores para a realização de algo ou compra de alguma coisa para o ministério
 
 
 
