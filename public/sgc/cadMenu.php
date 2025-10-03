@@ -45,7 +45,7 @@ if ($posicao == 'lista') {
                 ['value' => str_repeat('&nbsp;', $programa['prg_nivel'] * 8) . "<i class='{$programa['prg_icone']}'></i> {$programa['prg_descricao']}", 'attrs' => ['class' => 'text-nowrap']],
                 ['value' => $programa['prg_url']],
                 ['value' => $programa['aca_acao'], 'attrs' => ['class' => 'text-center']],
-                ['value' => $programa['prg_ativo'] ? 'Sim' : 'Não', 'attrs' => ['class' => 'text-center']],
+                ['value' => ($programa['prg_ativo'] == 'S') ? 'Sim' : 'Não', 'attrs' => ['class' => 'text-center']],
                 ['value' => L::buttonGroup($buttons), 'attrs' => ['class' => 'text-center']],
             ], 'attrs' => ['data-prg_codigo' => $programa['prg_codigo']]]);
         }
