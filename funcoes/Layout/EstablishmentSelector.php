@@ -30,9 +30,9 @@ class EstablishmentSelector
 
         return <<<HTML
         <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            <!--a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                 <i class="far fa-building"></i> $padrao <i class="fas fa-caret-down"></i>
-            </a>
+            </a-->
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-header">Selecionar empresa</span>
                 <div class="dropdown-divider"></div>
