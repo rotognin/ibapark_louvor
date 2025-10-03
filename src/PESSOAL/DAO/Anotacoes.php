@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CADASTRO\DAO;
+namespace App\PESSOAL\DAO;
 
 use Funcoes\Lib\DAO;
 
@@ -8,27 +8,18 @@ class Anotacoes extends DAO
 {
     private array $colunas = array(
         'ano_id',
+        'ano_usuario',
         'ano_titulo',
         'ano_texto',
-        'ano_data_hora',
-        'ano_usuario',
-        'ano_status'
-    );
-
-    private array $status = array(
-        'A' => 'Ativa',
-        'I' => 'Inativa'
+        'ano_criada_em',
+        'ano_alterada_em',
+        'ano_excluida_em'
     );
 
     public function __construct()
     {
         parent::__construct();
         $this->default = $this->dbManager->get('default');
-    }
-
-    public function getStatus(string $status = ''): array|string
-    {
-        return ($status == '') ? $this->status : $this->status[$status];
     }
 
     public function get($ano_id): array
@@ -44,7 +35,7 @@ class Anotacoes extends DAO
         $sql = "SELECT 
                 {$campos} 
             FROM {$this->table('anotacoes')}
-            WHERE 1=1
+            WHERE ano_excluida_em IS NULL
         ";
 
         if ($where) {
@@ -88,15 +79,13 @@ class Anotacoes extends DAO
         return $stmt->rowCount();
     }
 
+    // soft-delete
     public function delete(int $ano_id): int
     {
-        if ($ano_id == 0) {
-            return 0;
-        }
+        $record = array(
+            'ano_excluida_em' => date('Y-m-d H:i:s')
+        );
 
-        $sql = "DELETE FROM {$this->table('anotacoes')} WHERE ano_id = ?";
-        $stmt = $this->default->prepare($sql);
-        $stmt->execute([$ano_id]);
-        return $stmt->rowCount();
+        return $this->update($ano_id, $record);
     }
 }

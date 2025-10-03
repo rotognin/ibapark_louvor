@@ -1,8 +1,8 @@
 <?php
 
-namespace App\CADASTRO\Datatables;
+namespace App\PESSOAL\Datatables;
 
-use App\CADASTRO\DAO\Anotacoes;
+use App\PESSOAL\DAO\Anotacoes;
 use Funcoes\Layout\Datatable;
 use Funcoes\Lib\Datatables\Definitions;
 use Funcoes\Layout\Layout as L;
@@ -34,15 +34,14 @@ class DatatableAnotacoes extends Definitions
             'columns' => [
                 ['name' => 'ano_id'],
                 ['name' => 'ano_titulo'],
-                ['name' => 'ano_data_hora'],
-                ['name' => 'ano_usuario'],
-                ['name' => 'ano_status'],
+                ['name' => 'ano_criada_em'],
+                ['name' => 'ano_alterada_em'],
                 ['name' => 'acoes'],
             ],
             'order' => [[1, 'asc']],
             'columnDefs' => [
-                ['targets' => [0, 2, 3, 4, 5], 'className' => 'text-center'],
-                ['targets' => [5], 'orderable' => false],
+                ['targets' => [0, 2, 3, 4], 'className' => 'text-center'],
+                ['targets' => [4], 'orderable' => false],
             ],
             'fixedHeader' => true,
             'lengthMenu' => [[10, 50, 100, -1], [10, 50, 100, 'Todos']],
@@ -63,9 +62,8 @@ class DatatableAnotacoes extends Definitions
             'cols' => [
                 ['value' => '#', 'attrs' => ['class' => 'text-center']],
                 ['value' => 'Título', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Data/Hora', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Usuário', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Status', 'attrs' => ['class' => 'text-center']],
+                ['value' => 'Criada em', 'attrs' => ['class' => 'text-center']],
+                ['value' => 'Alterada em', 'attrs' => ['class' => 'text-center']],
                 ['value' => 'Ações', 'attrs' => ['class' => 'text-center']]
             ],
         ]);
@@ -105,16 +103,16 @@ class DatatableAnotacoes extends Definitions
                 $link = '?posicao=excluir&ano_id=' . $reg['ano_id'];
 
                 $buttons = L::buttonGroup([
-                    L::linkButton('', "?posicao=form&ano_id={$reg['ano_id']}", 'Editar Anotação', 'fas fa-edit', 'outline-secondary', 'sm'),
+                    L::button('', 'lerAnotacao(' . $reg['ano_id'] . ')', 'Exibir anotação', 'fas fa-file-alt', 'outline-primary', 'sm'),
+                    L::linkButton('', "?posicao=form&ano_id={$reg['ano_id']}", 'Editar Anotação', 'fas fa-edit', 'outline-primary', 'sm'),
                     L::button('', "excluirAnotacao('{$link}')", 'Excluir Anotação', 'fas fa-trash', 'outline-danger', 'sm')
                 ]);
 
                 $data[] = array(
                     $reg['ano_id'],
                     $reg['ano_titulo'],
-                    Format::datetime($reg['ano_data_hora']),
-                    $reg['ano_usuario'],
-                    $anotacoesDAO->getStatus($reg['ano_status']),
+                    Format::datetime($reg['ano_criada_em']),
+                    Format::datetime($reg['ano_alterada_em'] ?? ''),
                     $buttons
                 );
             }

@@ -1,6 +1,6 @@
 <?php
 
-use App\CADASTRO\DAO\Anotacoes;
+use App\PESSOAL\DAO\Anotacoes;
 use Funcoes\Helpers\Text;
 
 $anotacoesDAO = new Anotacoes();
@@ -17,12 +17,13 @@ $record = array(
 );
 
 if ($novo) {
-    $record['ano_data_hora'] = date('Y-m-d H:i:s');
+    $record['ano_criada_em'] = date('Y-m-d H:i:s');
     $record['ano_usuario'] = $usuario;
-    $record['ano_status'] = 'A';
 
     $ano_id = $anotacoesDAO->insert($record);
 } else {
+    $record['ano_alterada_em'] = date('Y-m-d H:i:s');
+
     $count = $anotacoesDAO->update($ano_id, $record);
 }
 

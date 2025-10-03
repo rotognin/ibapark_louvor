@@ -1,7 +1,7 @@
 <?php
 
 use Funcoes\Layout\Layout as L;
-use App\CADASTRO\DAO\Anotacoes;
+use App\PESSOAL\DAO\Anotacoes;
 use Funcoes\Layout\Form;
 use Funcoes\Layout\FormControls as FC;
 

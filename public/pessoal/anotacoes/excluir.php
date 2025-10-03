@@ -1,6 +1,6 @@
 <?php
 
-use App\CADASTRO\DAO\Anotacoes;
+use App\PESSOAL\DAO\Anotacoes;
 
 $anotacoesDAO = new Anotacoes();
 

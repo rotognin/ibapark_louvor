@@ -1,0 +1,95 @@
+OK - Anotações
+    ano_id
+    ano_usuario
+    ano_titulo
+    ano_texto
+    ano_criada_em
+    ano_alterada_em
+    ano_excluida_em
+
+- Músicas
+    mus_id
+    mus_usuario (se estiver em branco, significa que faz parte do grupo)
+    mus_nome
+    mus_artista
+    mus_observacoes
+    mus_tipo - cadastro de tipos para músicas (repertório, nova, hino CC, hino HCC, etc)
+    mus_ativa (S/N)
+    mus_criada_em
+    mus_criada_por
+    mus_alterada_em
+    mus_alterada_por
+    mus_excluida_em
+    mus_excluida_por
+
+- Integrantes
+    int_id
+    int_nome
+    int_observacoes
+    int_usuario - ligado ao cadastro do sistema
+    int_ativo (S/N)
+    int_criado_em
+    int_criado_por
+    int_alterado_em
+    int_alterado_por
+    int_excluido_em
+    int_excluido_por
+
+- Agenda - Para lembrete do grupo
+    age_id
+    age_usuario (se estiver em branco, significa que é a agenda do grupo todo)
+    age_data
+    age_tipo - tabela de tipos para agenda
+    age_texto
+    age_cor - o usuário escolherá a cor para organização própria
+    age_criada_em
+    age_criada_por
+    age_alterada_em
+    age_alterada_por
+    age_excluida_em
+    age_excluida_por
+
+- Avisos - Enviados e recebidos
+    avi_id
+    avi_usuario (se estiver em branco, significa que é um aviso enviado a um ou mais integrantes)
+    avi_prioridade (baixa, média ou alta)
+    avi_titulo
+    avi_texto
+    avi_expirar_apos - se zero, não expira. Se maior que zero, expira após x dias da criação do aviso
+    avi_criado_em
+    avi_criado_por
+    avi_alterado_em
+    avi_alterado_por
+    avi_excluido_em
+    avi_excluido_por
+
+- Destinatários dos Avisos
+    dxa_id
+    dxa_aviso
+    dxa_usuario
+    dxa_lido (S/N)
+    dxa_lido_em
+
+- Comentários - ligados a avisos, escalas, compartilhamentos, etc
+    com_id
+    com_tipo - ligado à tabela de tipos para comentários
+    com_entidade_id
+    com_usuario
+    com_texto
+    com_criado_em
+    com_status (1 - Ativo/Visível, 2 - Inativo/Não visível/Não aceito, 3 - Em moderação)
+    com_alterado_em
+    com_alterado_por - pode ser alterado por um admin
+    com_excluido_em
+    com_excluido_por - pode ser excluído por um admin
+
+- Compartilhamentos
+    cmp_id
+    cmp_usuario - que enviou
+
+- Destinatários dos Compartilhamentos
+    dxa_id
+    dxa_aviso
+    dxa_usuario
+    dxa_lido (S/N)
+    dxa_lido_em

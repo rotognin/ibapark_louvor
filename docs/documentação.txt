@@ -65,10 +65,10 @@ Ideias para o novo sistema de escalas da igreja
 - a questão da indisponibilidade, abrir o do mês seguinte a partir do dia 20 de cada mês, para as pessoas marcarem que não estarão, 
   com a possibilidade de uma observação não obrigatória
 - pensar não apenas nos domingos, mas em cultos especiais também, cultos de quarta e demais ocasiões
-- mural de avisos importantes com apenas um título no dashboard, para a pessoa clicar e ler o aviso. Guardar quem abriu o aviso para ler
+- mural de avisos importantes com apenas o título no dashboard, para a pessoa clicar e ler o aviso. Guardar quem abriu o aviso para ler
 - Cadastro de patrimônio
 - responsáveis pelos itens do louvor, cuidar, levar para manutenção, etc
-- tarefas a serem realizadas pelos integrantes (organizar cifras, slides, etc)
+- tarefas a serem realizadas pelos integrantes (organizar cifras, slides, etc), admins podem passar tarefas para outros
 - pensar em mais coisas que não são realizadas usando o zap
 - espécie de "banco", armazenar valores para a realização de algo ou compra de alguma coisa para o ministério
 

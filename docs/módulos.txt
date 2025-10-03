@@ -1,0 +1,31 @@
+Pessoal
+    - Anotações - Textos, com a possibilidade de anexar arquivos
+    - Músicas - cadastro particular de músicas (adicionar anexos)
+    - Agenda - Anotações gerais com tipos (indisponibilidade e demais tipos)
+    - Avisos - Avisos recebidos, e poderá enviar avisos à administração e a grupos (não individuais)
+    - Compartilhamentos - Enviados e recebidos (imagens, músicas, links, textos)
+    - Tarefas - cadastrar tarefas próprias e visualizar tarefas atribuídas (marcar como realizadas)
+Cadastros
+    - Integrantes - pessoas que participam do ministério (ligação com o usuário de cada um), atribuições
+    - Músicas - cadastro de músicas (adicionar anexos)
+    - Grupos - grupos do ministério: vocal, instrumental, teclado, bateria, etc
+    * Administrativos
+        - Tipos de anexos - usado para vários fins
+        - Tipos para agenda - indisponibilidade, visita, trabalho, estudos, etc
+        - Tipos para compartilhamentos - imagens, músicas, links, textos, etc
+        - Tipos de Músicas - repertório, novas, CC, HCC, etc
+        - Tipos para comentários - que receberão comentários dos usuários (evento, compartilhamentos, avisos, etc)
+Eventos
+    - Evento - o que vai acontecer (dia e hora), pode ser ensaios, reuniões, escala, visitas que envolvam o grupo
+      local onde vai acontecer, ou on-line
+    - Escala - montagem com os integrantes e músicas (ligar a um evento)
+    - Agenda - essa será geral, os eventos aparecerão a todos no dashboard
+Registros
+    - Escalas anteriores
+Patrimônio
+    - Cadastro - itens de responsabilidade do ministério
+    - Manutenção - saída para conserto
+    - Deslocamento - empréstimos, uso em outro local,etc
+Sistema
+    * Cadastros
+        - Papéis de usuários (já existente) - vocal, dirigente, violão, baixo, teclado, bateria, auxiliar
