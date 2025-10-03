@@ -52,7 +52,6 @@ class DatatableIntegrantes extends Definitions
 
     public function tableConfig(Datatable $table)
     {
-        $table->setAttrs(['id' => 'tabela-integrantes']);
         $table->setSize('sm');
         $table->setFooter(false);
 
@@ -73,9 +72,6 @@ class DatatableIntegrantes extends Definitions
 
         $where = ['', []];
 
-        global $session;
-        $usuario = $session->get('credentials.default');
-
         if (!empty($this->filters['int_nome'])){
             $where[0] .= ' AND int_nome = ?';
             $where[1][] = $this->filters['int_nome'];
@@ -95,18 +91,12 @@ class DatatableIntegrantes extends Definitions
             $total = $registros[0]['total'] ?? count($registros);
 
             foreach ($registros as $reg) {
-                $novo_status = ($reg['ban_status'] == 'A') ? 'Inativar' : 'Ativar';
-                $status_alvo = ($reg['ban_status'] == 'A') ? 'I' : 'A';
-                $icon_status = ($reg['ban_status'] == 'A') ? 'fas fa-eye-slash' : 'fas fa-eye';
-                $tipo_status = ($reg['ban_status'] == 'A') ? 'outline-danger' : 'outline-success';
-                $msg = ($reg['ban_status'] == 'A') ? 'Inativo' : 'Ativo';
-
-                $link = '?posicao=alterarStatus&ban_id=' . $reg['ban_id'] . '&status_alvo=' . $status_alvo;
+                $link = '?posicao=excluir&int_id=' . $reg['int_id'];
 
                 $buttons = L::buttonGroup([
                     L::button('', 'visualizar(' . $reg['int_id'] . ')', 'Visualizar Informações', 'fas fa-file-alt', 'outline-primary', 'sm'),
-                    L::linkButton('', "?posicao=form&ban_id={$reg['int_id']}", 'Editar Banco', 'fas fa-edit', 'outline-primary', 'sm'),
-                    L::button('', "alterarStatus('{$link}', '{$msg}')", $novo_status, $icon_status, $tipo_status, 'sm')
+                    L::linkButton('', "?posicao=form&int_id={$reg['int_id']}", 'Editar Integrante', 'fas fa-edit', 'outline-primary', 'sm'),
+                    L::button('', "excluir('{$link}')", 'Excluir Integrante', 'fas fa-trash', 'outline-danger', 'sm')
                 ]);
 
                 $data[] = array(

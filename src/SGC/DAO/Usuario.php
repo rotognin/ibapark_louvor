@@ -86,6 +86,22 @@ class Usuario extends DAO
         return $stmt->fetchAll();
     }
 
+    public function obterAtivos(){
+        $where = array('');
+        $where[0] = ' AND u.usu_ativo = ?';
+        $where[1][] = 'S';
+
+        $aUsuarios = $this->getArray($where);
+
+        $array = array();
+
+        foreach($aUsuarios as $usu){
+            $array[$usu['usu_login']] = $usu['usu_nome'];
+        }
+
+        return $array;
+    }
+
     public function montarArray(array $antes = []): array
     {
         $array = $antes;

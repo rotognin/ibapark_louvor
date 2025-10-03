@@ -28,8 +28,8 @@ class Integrantes extends DAO
 
     public function get($int_id): array
     {
-        $grupos = $this->getArray([" AND int_id = ?", [$int_id]]);
-        return $grupos[0] ?? [];
+        $integrantes = $this->getArray([" AND int_id = ?", [$int_id]]);
+        return $integrantes[0] ?? [];
     }
 
     public function baseQuery($where)
@@ -38,8 +38,8 @@ class Integrantes extends DAO
 
         $sql = "SELECT 
                 {$campos} 
-            FROM {$this->table('grupos_gerais')}
-            WHERE int_excluido_em IS NOT NULL
+            FROM {$this->table('integrantes')}
+            WHERE int_excluido_em IS NULL
         ";
 
         if ($where) {
@@ -66,7 +66,7 @@ class Integrantes extends DAO
 
     public function insert(array $record): int
     {
-        [$sql, $args] = $this->preparedInsert($this->table('grupos_gerais'), $record);
+        [$sql, $args] = $this->preparedInsert($this->table('integrantes'), $record);
         $stmt = $this->default->prepare($sql);
         $stmt->execute($args);
         return $this->default->lastInsertId();
@@ -74,7 +74,7 @@ class Integrantes extends DAO
 
     public function update(string $int_id, array $record): int
     {
-        [$sql, $args] = $this->preparedUpdate($this->table('grupos_gerais'), $record);
+        [$sql, $args] = $this->preparedUpdate($this->table('integrantes'), $record);
         $sql .= " WHERE int_id = ?";
         $args[] = $int_id;
 
