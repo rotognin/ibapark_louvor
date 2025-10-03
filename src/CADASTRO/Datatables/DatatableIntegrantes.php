@@ -2,13 +2,13 @@
 
 namespace App\CADASTRO\Datatables;
 
-use App\CADASTRO\DAO\Bancos;
+use App\CADASTRO\DAO\Integrantes;
 use Funcoes\Layout\Datatable;
 use Funcoes\Lib\Datatables\Definitions;
 use Funcoes\Layout\Layout as L;
 use Funcoes\Helpers\Format;
 
-class DatatableBancos extends Definitions
+class DatatableIntegrantes extends Definitions
 {
     public function __construct($tableID = "")
     {
@@ -30,17 +30,16 @@ class DatatableBancos extends Definitions
         //Definições das opções do datatable dando merge com as opções padrão
         $this->setOptions([
             'columns' => [
-                ['name' => 'ban_id'],
-                ['name' => 'ban_descricao'],
-                ['name' => 'ban_sigla'],
-                ['name' => 'ban_tipo'],
-                ['name' => 'ban_status'],
+                ['name' => 'int_id'],
+                ['name' => 'int_nome'],
+                ['name' => 'int_usuario'],
+                ['name' => 'int_ativo'],
                 ['name' => 'acoes'],
             ],
             'order' => [[2, 'asc']],
             'columnDefs' => [
-                ['targets' => [0, 3, 4, 5], 'className' => 'text-center'],
-                ['targets' => [5], 'orderable' => false],
+                ['targets' => [0, 2, 3, 4], 'className' => 'text-center'],
+                ['targets' => [4], 'orderable' => false],
             ],
             'fixedHeader' => true,
             'lengthMenu' => [[10, 50, 100, -1], [10, 50, 100, 'Todos']],
@@ -53,17 +52,16 @@ class DatatableBancos extends Definitions
 
     public function tableConfig(Datatable $table)
     {
-        $table->setAttrs(['id' => 'tabela-bancos']);
+        $table->setAttrs(['id' => 'tabela-integrantes']);
         $table->setSize('sm');
         $table->setFooter(false);
 
         $table->addHeader([
             'cols' => [
                 ['value' => '#', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Descrição', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Sigla', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Tipo', 'attrs' => ['class' => 'text-center']],
-                ['value' => 'Status', 'attrs' => ['class' => 'text-center']],
+                ['value' => 'Nome', 'attrs' => ['class' => 'text-center']],
+                ['value' => 'Usuário', 'attrs' => ['class' => 'text-center']],
+                ['value' => 'Situação', 'attrs' => ['class' => 'text-center']],
                 ['value' => 'Ações', 'attrs' => ['class' => 'text-center']]
             ],
         ]);
@@ -71,22 +69,24 @@ class DatatableBancos extends Definitions
 
     public function getData($limit, $offset, $orderBy)
     {
-        $bancosDAO = new Bancos();
+        $integrantesDAO = new Integrantes();
 
         $where = ['', []];
 
         global $session;
         $usuario = $session->get('credentials.default');
 
-        $where[0] .= ' AND ban_usuario = ?';
-        $where[1][] = $usuario;
-
+        if (!empty($this->filters['int_nome'])){
+            $where[0] .= ' AND int_nome = ?';
+            $where[1][] = $this->filters['int_nome'];
+        }
+        
         if ($limit == -1) {
             $limit = 0;
             $offset = 0;
         }
 
-        $registros = $bancosDAO->getArray($where, $orderBy ?? 'ban_id ASC', $limit, $offset);
+        $registros = $integrantesDAO->getArray($where, $orderBy ?? 'int_id ASC', $limit, $offset);
 
         $data = [];
         $total = 0;
@@ -104,16 +104,16 @@ class DatatableBancos extends Definitions
                 $link = '?posicao=alterarStatus&ban_id=' . $reg['ban_id'] . '&status_alvo=' . $status_alvo;
 
                 $buttons = L::buttonGroup([
-                    L::linkButton('', "?posicao=form&ban_id={$reg['ban_id']}", 'Editar Banco', 'fas fa-edit', 'outline-secondary', 'sm'),
+                    L::button('', 'visualizar(' . $reg['int_id'] . ')', 'Visualizar Informações', 'fas fa-file-alt', 'outline-primary', 'sm'),
+                    L::linkButton('', "?posicao=form&ban_id={$reg['int_id']}", 'Editar Banco', 'fas fa-edit', 'outline-primary', 'sm'),
                     L::button('', "alterarStatus('{$link}', '{$msg}')", $novo_status, $icon_status, $tipo_status, 'sm')
                 ]);
 
                 $data[] = array(
-                    $reg['ban_id'],
-                    $reg['ban_descricao'],
-                    $reg['ban_sigla'],
-                    $bancosDAO->getTipo($reg['ban_tipo']),
-                    $bancosDAO->getStatus($reg['ban_status']),
+                    $reg['int_id'],
+                    $reg['int_nome'],
+                    $reg['int_usuario'],
+                    ($reg['int_ativo'] == 'S') ? 'Ativo' : 'Inativo',
                     $buttons
                 );
             }

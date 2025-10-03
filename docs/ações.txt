@@ -1,0 +1,10 @@
+Ações necessárias para executar funções no sistema.
+
+- Anotações
+    - separado por usuário. O usuário tem total acesso às suas anotações
+
+
+- Integrantes
+    - integrantes-cadastro - Inserir um integrante novo
+    - integrantes-alteração - Alterar informações de integrantes
+    - integrantes-exclusão - Excluir um integrante

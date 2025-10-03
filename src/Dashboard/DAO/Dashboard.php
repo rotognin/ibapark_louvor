@@ -5,7 +5,6 @@ namespace App\Dashboard\DAO;
 use App\SGC\DAO\LogPrograma;
 use App\SGC\DAO\Programa;
 use Funcoes\Lib\DAO;
-use App\CADASTRO\DAO\Tarefas;
 use Funcoes\Layout\Table;
 use Funcoes\Helpers\Format;
 use Funcoes\Layout\Layout as L;
@@ -13,7 +12,6 @@ use Funcoes\Layout\Layout as L;
 class Dashboard extends DAO
 {
     private LogPrograma $log;
-    private Tarefas $tarefasDAO;
     private string $usuario;
 
     public function __construct()
@@ -22,7 +20,6 @@ class Dashboard extends DAO
         $this->default = $this->dbManager->get('default');
 
         $this->log = new LogPrograma();
-        $this->tarefasDAO = new Tarefas();
 
         global $session;
         $usuario = $session->get('credentials.default');
@@ -160,18 +157,6 @@ class Dashboard extends DAO
         return '</div>';
     }
 
-    private function obterTarefas(int $tar_status): array
-    {
-        $where = array('');
-        $where[0] = ' AND tar_usuario = ? AND tar_status = ?';
-        $where[1][] = $this->usuario;
-        $where[1][] = $tar_status;
-
-        $aTarefas = $this->tarefasDAO->getArray($where, ' tar_data_limite ASC ');
-
-        return $aTarefas;
-    }
-
     private function montarTabela(array $array, string $acao): string
     {
         $tabela = new Table('tabela-' . $acao);
@@ -230,46 +215,5 @@ class Dashboard extends DAO
         }
 
         return $tabela->html();
-    }
-
-    public function tarefasDashboard()
-    {
-        // Buscar as tarefas do usuário logado e montar uma tabela com as informações
-        $aFazer = $this->obterTarefas(1);
-        $fazendo = $this->obterTarefas(2);
-        $aguardando = $this->obterTarefas(3);
-
-        $html = '';
-        $html = '<div class="card ml-3 mt-2 mb-0 mr-3">';
-        $html .= '<h5 class="card-header text-white bg-success">Fazendo: ' . count($fazendo) . '</h5>';
-        $html .= '<div class="card-body p-1 m-1">';
-
-        if (!empty($fazendo)) {
-            $html .= $this->montarTabela($fazendo, 'fazendo');
-        }
-
-        $html .= '</div></div>';
-
-        $html .= '<div class="card ml-3 mt-2 mb-0 mr-3">';
-        $html .= '<h5 class="card-header text-white bg-info">A fazer: ' . count($aFazer) . '</h5>';
-        $html .= '<div class="card-body p-1 m-1">';
-
-        if (!empty($aFazer)) {
-            $html .= $this->montarTabela($aFazer, 'a-fazer');
-        }
-
-        $html .= '</div></div>';
-
-        $html .= '<div class="card ml-3 mt-2 mb-2 mr-3">';
-        $html .= '<h5 class="card-header text-white bg-warning">Aguardando: ' . count($aguardando) . '</h5>';
-        $html .= '<div class="card-body p-1 m-1">';
-
-        if (!empty($aguardando)) {
-            $html .= $this->montarTabela($aguardando, 'aguardando');
-        }
-
-        $html .= '</div></div>';
-
-        return $html;
     }
 }

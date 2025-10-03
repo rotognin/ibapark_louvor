@@ -4,23 +4,20 @@ namespace App\CADASTRO\DAO;
 
 use Funcoes\Lib\DAO;
 
-class Tarefas extends DAO
+class Integrantes extends DAO
 {
     private array $colunas = array(
-        'tar_id',
-        'tar_descricao',
-        'tar_status',
-        'tar_usuario',
-        'tar_data',
-        'tar_data_limite'
-    );
-
-    private array $status = array(
-        '1' => 'A fazer',
-        '2' => 'Fazendo',
-        '3' => 'Aguardando',
-        '4' => 'Finalizado',
-        '5' => 'Cancelado'
+        'int_id',
+        'int_nome',
+        'int_observacoes',
+        'int_usuario',
+        'int_ativo',
+        'int_criado_em',
+        'int_criado_por',
+        'int_alterado_em',
+        'int_alterado_por',
+        'int_excluido_em',
+        'int_excluido_por'
     );
 
     public function __construct()
@@ -29,15 +26,10 @@ class Tarefas extends DAO
         $this->default = $this->dbManager->get('default');
     }
 
-    public function getStatus(string $status = ''): array|string
+    public function get($int_id): array
     {
-        return ($status == '') ? $this->status : $this->status[$status];
-    }
-
-    public function get($tar_id): array
-    {
-        $tarefas = $this->getArray([" AND tar_id = ?", [$tar_id]]);
-        return $tarefas[0] ?? [];
+        $grupos = $this->getArray([" AND int_id = ?", [$int_id]]);
+        return $grupos[0] ?? [];
     }
 
     public function baseQuery($where)
@@ -46,8 +38,8 @@ class Tarefas extends DAO
 
         $sql = "SELECT 
                 {$campos} 
-            FROM {$this->table('tarefas')}
-            WHERE 1=1
+            FROM {$this->table('grupos_gerais')}
+            WHERE int_excluido_em IS NOT NULL
         ";
 
         if ($where) {
@@ -74,32 +66,33 @@ class Tarefas extends DAO
 
     public function insert(array $record): int
     {
-        [$sql, $args] = $this->preparedInsert($this->table('tarefas'), $record);
+        [$sql, $args] = $this->preparedInsert($this->table('grupos_gerais'), $record);
         $stmt = $this->default->prepare($sql);
         $stmt->execute($args);
         return $this->default->lastInsertId();
     }
 
-    public function update(string $tar_id, array $record): int
+    public function update(string $int_id, array $record): int
     {
-        [$sql, $args] = $this->preparedUpdate($this->table('tarefas'), $record);
-        $sql .= " WHERE tar_id = ?";
-        $args[] = $tar_id;
+        [$sql, $args] = $this->preparedUpdate($this->table('grupos_gerais'), $record);
+        $sql .= " WHERE int_id = ?";
+        $args[] = $int_id;
 
         $stmt = $this->default->prepare($sql);
         $stmt->execute($args);
         return $stmt->rowCount();
     }
 
-    public function delete(int $tar_id): int
+    public function delete(int $int_id): int
     {
-        if ($tar_id == 0) {
-            return 0;
-        }
+        global $session;
+        $usuario = $session->get('credentials.default');
 
-        $sql = "DELETE FROM {$this->table('tarefas')} WHERE tar_id = ?";
-        $stmt = $this->default->prepare($sql);
-        $stmt->execute([$tar_id]);
-        return $stmt->rowCount();
+        $record = array(
+            'int_excluido_em' => date('Y-m-d H:i:s'),
+            'int_excluido_por' => $usuario
+        );
+
+        return $this->update($int_id, $record);
     }
 }
